@@ -9,6 +9,8 @@ import {font} from "../font";
 
 export function Login() {
 
+ 
+
   const history = useHistory();
 
   const [email,setEmail] = useState(false);
@@ -17,6 +19,9 @@ export function Login() {
   const [passWord,setPassWord] = useState(false);
   const [successAlert , setS_Alert] = useState(false);
   const [failedAlert , setF_Alert] = useState(false);
+  
+  
+  const [authenFailed , setAuthenFailed] = useState(false);
 
   const style = {
     display: "grid",
@@ -33,31 +38,58 @@ export function Login() {
    const [name,setName] = useState("");
    const [password,setPassword] = useState(""); 
 
-   const login=() => {
-   const userLogin = {name,password};
-   fetch("https://crm-nodejs-rv.herokuapp.com/",
-   {method:"POST",body:JSON.stringify(userLogin),
-   headers:{"Content-Type":"application/json"}
-})
-   .then((response)=>response.status===200)
-   .then(()=> history.push("/dashboard"));
-}
+
+
+
+  const login=() => {
+
+    const userLogin = {name,password};
+
+    if(userLogin.name === "" || userLogin.name === undefined){
+        return setAuthenFailed(true)
+    } 
+ 
+   fetch("https://crm-nodejs-rv.herokuapp.com/login",
+       {method:"POST",body:JSON.stringify(userLogin),
+         headers:{"Content-Type":"application/json"}})
+   .then(response=>{
+         if(response.status===400){
+           
+           return setAuthenFailed(true);
+           }
+
+         async function get(response){
+           let reply = await response.json();
+           sessionStorage.setItem("userId",JSON.stringify(reply.userId));
+           sessionStorage.setItem("role",reply.role);
+           let arr = reply.token.split(".").join("/a")
+           sessionStorage.setItem("token",arr);
+            history.push("/crm-app");
+         }
+         get(response);
+         
+    });
+  }
+
+  // note work for setting textField when the credential is wrong
 
   return (
     <Box sx={{ width: "100%", height: "100vh", display: "grid", placeItems: "center" }}>
       <Box sx={{...font,...style}}>
          
 
-         <h1>Welcome User😀</h1>
-
+         <h1>Welcome😀</h1>
+         <i style={{color:"red",fontSize:"20px"}}>Please login to access your account!</i>
          <TextField 
             className="TextField"
             label="User Name" 
             sx={{...font}} 
             margin="normal" 
-            variant="standard" 
+            variant="standard"
             placeholder='Enter your user-name'
+            onClick={(e)=>{setAuthenFailed(false);setS_Alert(false);setF_Alert(false)}}
             onChange={(e)=>{setName(e.target.value)}} />
+
          <TextField 
             className="TextField"
             label="Password" 
@@ -66,7 +98,9 @@ export function Login() {
             type="password" 
             variant="standard" 
             placeholder='Enter your password'
-            onChange={(e)=>setPassword(e.target.value)} />
+            onClick={()=>{setAuthenFailed(false);setS_Alert(false);setF_Alert(false)}}
+            onChange={(e)=>{setPassword(e.target.value)}} 
+            onKeyDown={(e)=>{if(e.key==="Enter"){login()}}}/>
 
           {(email)
             ?""
@@ -76,7 +110,7 @@ export function Login() {
                    <Button 
                       sx={font}
                       color='error'
-                      onClick={()=>{setEmail(!email);setS_Alert(false);setF_Alert(false)}}>
+                      onClick={()=>{setEmail(!email);setS_Alert(false);setF_Alert(false);setAuthenFailed(false)}}>
                       Forgot Password?
                    </Button>
                </Box>}
@@ -127,7 +161,7 @@ export function Login() {
                            onClick={()=>setEmail(!email)}>
                            Cancel
                           </Button>}
-                </Box>
+                 </Box>
                </Box>
               : ""}
 
@@ -216,6 +250,17 @@ export function Login() {
                }>
                 Password reset is failed.
                 Please try again after some-time.
+             </Alert>
+             :""}
+
+            {(authenFailed)
+               ?<Alert severity='error' sx={font}
+               action={
+                 <Button color="error" size="small" onClick={()=>setAuthenFailed(!authenFailed)}>
+                   ❌
+                 </Button>
+               }>
+                Invalid User Credentials
              </Alert>
              :""}
       </Box>
