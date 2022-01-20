@@ -150,7 +150,7 @@ const style = {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Area  name="Tasks Completed per Lead" type="monotone" dataKey="cpmpletedTasks" stroke="#8884d8" fill="#8884d8" />
+              <Area  name="Tasks Completed per Lead" type="monotone" dataKey="cpmpletedTasks" stroke="dodgerBlue" fill="dodgerBlue" />
               <Legend />
             </AreaChart>
           </ResponsiveContainer>
@@ -161,7 +161,7 @@ const style = {
               <PolarGrid />
               <PolarAngleAxis dataKey="name" />
               <PolarRadiusAxis angle={30} domain={[0, 10]} />
-              <Radar name="Tasks Completed per Lead" dataKey="cpmpletedTasks" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+              <Radar name="Tasks Completed per Lead" dataKey="cpmpletedTasks" stroke="dodgerBlue" fill="dodgerBlue" fillOpacity={0.6} />
               {/* <Radar name="name" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} /> */}
               <Legend />
             </RadarChart>
@@ -204,7 +204,7 @@ const style = {
               <XAxis dataKey="name" />
               <YAxis  />
               <Tooltip />
-              <Area name="Services Completed per Lead" type="monotone" dataKey="cpmpletedTasks" stroke="#8884d8" fill="#8884d8" />
+              <Area name="Services Completed per Lead" type="monotone" dataKey="cpmpletedTasks" stroke="dodgerBlue" fill="dodgerBlue" />
               <Legend/>
             </AreaChart>
           </ResponsiveContainer>
@@ -215,7 +215,7 @@ const style = {
               <PolarGrid />
               <PolarAngleAxis dataKey="name" />
               <PolarRadiusAxis angle={30} domain={[0, 10]} />
-              <Radar name="Services Completed per Lead " dataKey="cpmpletedTasks" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+              <Radar name="Services Completed per Lead " dataKey="cpmpletedTasks" stroke="dodgerBlue" fill="dodgerBlue" fillOpacity={0.6} />
               {/* <Radar name="name" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} /> */}
               <Legend />
             </RadarChart>
