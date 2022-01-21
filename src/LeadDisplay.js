@@ -1,8 +1,37 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import { useState, useEffect,useContext } from 'react';
+import { context } from './App';
 
-export function LeadDisplay({ lead }) {
+export function Leads() {
+
+   const {keys, header} = useContext(context);
+
+  const [leads, setLeads] = useState();
+  const details = () => fetch("https://crm-nodejs-rv.herokuapp.com/leads",
+    {
+      method: "GET",
+      headers: header(keys)
+    })
+    .then((response) => response.json())
+    .then((data) => { setLeads(data) });
+
+  useEffect(() => details(), []);
+
+  return (
+    <>
+      {(leads)
+        ? <Box>
+          <h1>All leads</h1>
+          {leads.map((lead, index) => <LeadDisplay key={index} lead={lead} />)}
+        </Box>
+        : ""}
+    </>
+  )
+}
+
+function LeadDisplay({ lead }) {
 
   let style = {
     padding: "0 0.3rem ",
@@ -42,7 +71,7 @@ export function LeadDisplay({ lead }) {
             Company: <b>{lead.company}</b>  | Tilte : <b>{lead.title}</b> <br />
             Lead Source : <b>{lead.source}</b> </p>
         </Box>
-        <Box sx={{display: "flex"}}>
+        <Box sx={{ display: "flex" }}>
           <Button color="success" variant="contained">Mark as Complete</Button>
           <Button color="error" variant='contained'>Delete</Button>
         </Box>
