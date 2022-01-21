@@ -76,7 +76,7 @@ export function Login() {
       <Box sx={{ ...font, ...style }}>
 
 
-        <h1>Welcome😀</h1>
+        <h1>Welcome to CRM😀</h1>
         <i style={{ color: "red", fontSize: "20px" }}>Please login to access your account!</i>
         <TextField
           className="TextField"
