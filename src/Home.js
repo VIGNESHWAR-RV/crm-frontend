@@ -36,10 +36,10 @@ export function Home() {
               display:"flex",
               alignItems:"center",
               background:"dodgerBlue",
-              position:"sticky",
+              position:"fixed",
               zIndex:"2"
               }}>
-      <h2>Welcome {role.toUpperCase()}</h2>
+      <h2>Welcome <span style={{textTransform:"upperCase"}}>{role}</span></h2>
       <Button sx={{marginLeft:"auto",
                    color:"white",...font
                   }}
@@ -50,18 +50,21 @@ export function Home() {
     <Box  sx={{
                display:"grid",
                width:"100%",
-               marginTop:(expand)?"0":"-10.85rem",
+               marginTop:"0",
                transition:"all 0.6s ease-in-out",
                background:"transparent",
-               overflow:"hidden",
+               position:"fixed",
                zIndex:"1",
               }}>
        <Box
           sx={{border:"3px solid dodgerBlue",
                height:"166px",
+               marginTop:(expand)? "-5.6rem" : "5rem",
+               transition:"all 0.6s ease-in-out",
                display:"flex",
                justifyContent:"space-evenly",
                alignItems:"center",
+               background:"white"
               }}>
         <Box sx={{display:"grid",justifyItems:"center",cursor:"pointer"}}>
           <img src={DASHBOARD} alt="dashboard" style={{width:"200px",height:"80px"}}/>
@@ -78,13 +81,13 @@ export function Home() {
         <Box sx={{display:"grid",justifyItems:"center",cursor:"pointer"}}>
           <img src={SERVICE} alt="dashboard" style={{width:"200px",height:"80px"}}/>
           <Button sx={font}
-           onClick={()=>history.push("/crm-app/services")}>Service Requests</Button>
+           onClick={()=>{history.push("/crm-app/services");setExpand(!expand)}}>Service Requests</Button>
         </Box>
 
         <Box sx={{display:"grid",justifyItems:"center",cursor:"pointer"}}>
           <img src={ABOUTME} alt="dashboard" style={{width:"200px",height:"80px"}}/>
           <Button sx={font}
-           onClick={()=>history.push("/crm-app/about")}>About</Button> 
+           onClick={()=>{history.push("/crm-app/about");setExpand(!expand)}}>About</Button> 
         </Box>
 
      </Box>
@@ -92,21 +95,23 @@ export function Home() {
                  justifyContent:"center",
                  }}>
           <Button
-            sx={{border:"3px solid dodgerBlue",
+            sx={{border:"3px solid white",
+                 borderTop:"none",
                  borderRadius:"3rem",
                  borderTopLeftRadius:"0",
                  borderTopRightRadius:"0",
                  width:"18rem",
                  height:"2.5rem",
                  fontSize:"1.2rem",
+                 boxShadow:"2px 2px 15px black",
                  ...font
-                 }}
+                 }}  variant='contained'
                  onClick={()=>setExpand(!expand)}>
-             {(expand) ? "⬆️":"⬇️"} Menu
+             {(expand) ?"⬇️":"⬆️"} Menu
           </Button>
        </Box>
     </Box>
-    <Box  sx={{padding:"1rem 1.5rem",
+    <Box  sx={{padding:"1rem 1.5rem",paddingTop:"8rem"
                }}>
        <Switch>
          <Route exact path="/crm-app/">
