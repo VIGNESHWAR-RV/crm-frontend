@@ -38,6 +38,7 @@ export function Home() {
               display:"flex",
               alignItems:"center",
               background:"dodgerBlue",
+              border:"3px solid white",
               position:"fixed",
               zIndex:"2"
               }}>
@@ -56,7 +57,6 @@ export function Home() {
                width:"100%",
                marginTop:"0",
                transition:"all 0.6s ease-in-out",
-               background:"transparent",
                position:"fixed",
                zIndex:"1",
               }}>
@@ -68,7 +68,7 @@ export function Home() {
                display:"flex",
                justifyContent:"space-evenly",
                alignItems:"center",
-               background:"white"
+               background:"#1b1b1b"
               }}>
 
       {/* nav buttons with svg */}
@@ -110,6 +110,8 @@ export function Home() {
                  height:"2.5rem",
                  fontSize:"1.2rem",
                  boxShadow:"2px 2px 15px black",
+                 background:"dodgerblue",
+                 ":hover": { color:"dodgerblue", background: "whitesmoke",border:"3px solid dodgerBlue" },
                  ...font
                  }}  variant='contained'
                  onClick={()=>setExpand(!expand)}>

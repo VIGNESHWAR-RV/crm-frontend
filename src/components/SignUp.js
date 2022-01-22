@@ -15,7 +15,6 @@ export function SignUp() {
     display: "grid",
     width: "450px",
     height: "700px",
-    background: "white",
     justifyContent: "stretch",
     alignContent:"center",
     padding: "5%",

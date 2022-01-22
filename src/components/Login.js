@@ -25,7 +25,6 @@ export function Login() {
     borderRadius: "3rem",
     transition: "all 0.2s ease-in-out",
     overflow: "hidden",
-    background:"white"
   };
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");

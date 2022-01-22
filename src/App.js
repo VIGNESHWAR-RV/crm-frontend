@@ -10,13 +10,17 @@ import Typography from '@mui/material/Typography';
 import { font } from "./font"
 import { Home } from './Home';
 import { ForgotPassword } from './ForgotPassword';
-
+import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 
 const context = createContext("");
 
 function App() {
 
-
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
   
 
   const [keys,setKeys] = useState(sessionStorage.getItem("encryption"));
@@ -38,7 +42,7 @@ function header(key){
 }
 
   return (
-    
+  <ThemeProvider theme={darkTheme}>
     <context.Provider value={{keys,setKeys,header}}>
     <div className="App">
       <Paper sx={{ borderRadius: "none", width: "100%", minHeight: "100vh" }}>
@@ -70,6 +74,7 @@ function header(key){
       </Paper>
     </div>
     </context.Provider>
+  </ThemeProvider>
   );
 }
 
