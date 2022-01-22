@@ -45,7 +45,7 @@ function header(key){
   <ThemeProvider theme={darkTheme}>
     <context.Provider value={{keys,setKeys,header}}>
     <div className="App">
-      <Paper sx={{ borderRadius: "none", width: "100%", minHeight: "100vh" }}>
+      <Paper sx={{ borderRadius: "0", width: "100%", minHeight: "100vh" }}>
         <Typography variant="h5" sx={font}>
           <Switch>
             <Route exact path="/">

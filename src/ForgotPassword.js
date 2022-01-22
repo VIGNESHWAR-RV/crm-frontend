@@ -104,8 +104,8 @@ export function ForgotPassword() {
   }
   const style = {
     display: "grid",
-    width: "450px",
-    height: "300px",
+    width: "maxContent",
+    height: "maxContent",
     justifyContent: "stretch",
     alignContent: "space-evenly",
     padding: "5%",
@@ -126,10 +126,10 @@ export function ForgotPassword() {
         {(mailAndOtpCheck)
 
           ? (otp)
-            ? <Box sx={{ display: "grid" }}>
-              <Box>
-                Please enter the 6 digit one-time password(OTP)
+            ? <Box sx={{display:"grid"}}>
+                Please enter the one-time password(OTP)<br/>
                 sent to the Mail which is associaed with this account.
+                <br/>
                 <TextField
                   varient="outlined"
                   margin="normal"
@@ -137,7 +137,6 @@ export function ForgotPassword() {
                   onClick={()=>setOtpError(false)}
                   onChange={(e) => setOtpTyped(e.target.value)}
                 />
-              </Box>
               <Box sx={{ display: "flex" }}>
                 <Button sx={font} onClick={() => {
                   otpVerifcation();

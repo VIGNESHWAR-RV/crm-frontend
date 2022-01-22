@@ -38,7 +38,6 @@ export function Home() {
               display:"flex",
               alignItems:"center",
               background:"dodgerBlue",
-              border:"3px solid white",
               position:"fixed",
               zIndex:"2"
               }}>
@@ -63,35 +62,35 @@ export function Home() {
        <Box
           sx={{border:"3px solid dodgerBlue",
                height:"166px",
-               marginTop:(expand)? "-5.6rem" : "5rem",
+               marginTop:(expand)? "5rem": "-5.6rem",
                transition:"all 0.6s ease-in-out",
                display:"flex",
-               justifyContent:"space-evenly",
+               justifyContent:"space-around",
                alignItems:"center",
-               background:"#1b1b1b"
+               background:"#1b1b1b",
               }}>
 
       {/* nav buttons with svg */}
         <Box sx={{display:"grid",justifyItems:"center",cursor:"pointer"}}>
-          <img src={DASHBOARD} alt="dashboard" style={{width:"200px",height:"80px"}}/>
+          <img src={DASHBOARD} alt="dashboard" style={{width:"100%",height:"80px"}}/>
           <Button sx={font}
           onClick={()=>{history.push("/crm-app/");setExpand(!expand)}}>Dashboard</Button>
         </Box>
 
         <Box sx={{display:"grid",justifyItems:"center",cursor:"pointer"}}>
-          <img src={LEADS} alt="dashboard" style={{width:"200px",height:"80px"}}/>
+          <img src={LEADS} alt="dashboard" style={{width:"100%",height:"80px"}}/>
           <Button sx={font}
            onClick={()=>{history.push("/crm-app/leads");setExpand(!expand)}}>Leads</Button>
         </Box>
 
         <Box sx={{display:"grid",justifyItems:"center",cursor:"pointer"}}>
-          <img src={SERVICE} alt="dashboard" style={{width:"200px",height:"80px"}}/>
+          <img src={SERVICE} alt="dashboard" style={{width:"100%",height:"80px"}}/>
           <Button sx={font}
            onClick={()=>{history.push("/crm-app/services");setExpand(!expand)}}>Service Requests</Button>
         </Box>
 
         <Box sx={{display:"grid",justifyItems:"center",cursor:"pointer"}}>
-          <img src={ABOUTME} alt="dashboard" style={{width:"200px",height:"80px"}}/>
+          <img src={ABOUTME} alt="dashboard" style={{width:"100%",height:"80px"}}/>
           <Button sx={font}
            onClick={()=>{history.push("/crm-app/about");setExpand(!expand)}}>About</Button> 
         </Box>
@@ -109,7 +108,7 @@ export function Home() {
                  width:"18rem",
                  height:"2.5rem",
                  fontSize:"1.2rem",
-                 boxShadow:"2px 2px 15px black",
+                 boxShadow:"2px 6px 15px black",
                  background:"dodgerblue",
                  ":hover": { color:"dodgerblue", background: "whitesmoke",border:"3px solid dodgerBlue" },
                  ...font

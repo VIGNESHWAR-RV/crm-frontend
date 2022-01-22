@@ -16,10 +16,11 @@ export function Login() {
 
   const style = {
     display: "grid",
-    width: "450px",
-    height: "500px",
+    width: "maxContent",
+    height: "maxContent",
     justifyContent: "stretch",
-    padding: "5%",
+    margin:"2%",
+    padding: "3%",
     border: "5px solid dodgerBlue",
     boxShadow: "5px 5px 25px black",
     borderRadius: "3rem",
@@ -73,9 +74,9 @@ export function Login() {
 
   return (
     <Box sx={{ width: "100%", 
-               height: "100vh", 
+               height: "minContent", 
                display: "grid",
-               gridTemplateColumns:"1fr 0.7fr",
+               gridTemplateColumns:"1fr",
                }}>
 
       <Box  sx={{display:"grid",placeItems:"center"}}>

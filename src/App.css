@@ -19,11 +19,21 @@
     -webkit-text-fill-color: transparent;
     animation: textclip 6s linear infinite;
     display: inline-block;
-        font-size: 150px;
+        font-size: 6vmax;
   }
   
   @keyframes textclip {
     to {
       background-position: 200% center;
     }
+}
+@media only screen and (max-width:1050px ) {
+  #graphs{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #stats{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }

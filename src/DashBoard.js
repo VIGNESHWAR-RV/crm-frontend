@@ -38,7 +38,7 @@ export function DashBoard() {
         ? <Box>
           <h2>Lead Stats</h2>
           <hr />
-          <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around", margin: "2rem 0" }}>
+          <Box id="stats" sx={{ display: "grid",gridTemplateColumns:"1fr 1fr 1fr 1fr", margin: "2rem 5%" }}>
             <Box sx={style}>
               <h4>Total Count-total</h4>
             </Box>
@@ -53,15 +53,15 @@ export function DashBoard() {
             </Box>
           </Box>
 
-          <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", justifyItems: "center" }}>
-            <Box sx={{ width: "80%", height: "30vh", fontSize: "15px" }}>
+          <Box id="graphs" sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", justifyItems: "center" }}>
+            <Box sx={{ width: "90%", height: "30vh", fontSize: "15px" }}>
               <ResponsiveContainer>
                 <AreaChart
                   data={leads}
                   margin={{
-                    top: 20,
-                    right: 30,
-                    left: 10,
+                    top: 10,
+                    right: 10,
+                    left: -10,
                     bottom: 10,
                   }}
                 >
@@ -74,7 +74,7 @@ export function DashBoard() {
                 </AreaChart>
               </ResponsiveContainer>
             </Box>
-            <Box sx={{ width: "80%", height: "30vh", fontSize: "15px" }}>
+            <Box sx={{ width: "90%", height: "30vh", fontSize: "15px" }}>
               <ResponsiveContainer>
                 <RadarChart cx="50%" cy="50%" outerRadius="80%" data={leads}>
                   <PolarGrid />
@@ -92,7 +92,7 @@ export function DashBoard() {
 
           <h2>Service Stats</h2>
           <hr />
-          <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-around", margin: "2rem 0" }}>
+          <Box id="stats" sx={{ display: "grid",gridTemplateColumns:"1fr 1fr 1fr 1fr", margin: "2rem 5%" }}>
             <Box sx={style}>
               <h4>Total Count-total</h4>
             </Box>
@@ -107,15 +107,15 @@ export function DashBoard() {
             </Box>
           </Box>
 
-          <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", justifyItems: "center" }}>
-            <Box sx={{ width: "80%", height: "30vh", fontSize: "15px" }}>
+          <Box id="graphs" sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", justifyItems: "center" }}>
+            <Box sx={{ width: "90%", height: "30vh", fontSize: "15px" }}>
               <ResponsiveContainer>
                 <AreaChart
                   data={leads}
                   margin={{
-                    top: 20,
-                    right: 30,
-                    left: 10,
+                    top: 10,
+                    right: 10,
+                    left: -10,
                     bottom: 10,
                   }}
                 >
@@ -128,7 +128,7 @@ export function DashBoard() {
                 </AreaChart>
               </ResponsiveContainer>
             </Box>
-            <Box sx={{ width: "80%", height: "30vh", fontSize: "15px" }}>
+            <Box sx={{ width: "90%", height: "30vh", fontSize: "15px", }}>
               <ResponsiveContainer>
                 <RadarChart cx="50%" cy="50%" outerRadius="80%" data={leads}>
                   <PolarGrid />
