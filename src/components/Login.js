@@ -17,14 +17,15 @@ export function Login() {
   const style = {
     display: "grid",
     width: "450px",
-    height: "450px",
+    height: "500px",
     justifyContent: "stretch",
     padding: "5%",
     border: "5px solid dodgerBlue",
     boxShadow: "5px 5px 25px black",
     borderRadius: "3rem",
     transition: "all 0.2s ease-in-out",
-    overflow: "hidden"
+    overflow: "hidden",
+    background:"white"
   };
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -72,11 +73,20 @@ export function Login() {
   // note work for setting textField when the credential is wrong
 
   return (
-    <Box sx={{ width: "100%", height: "100vh", display: "grid", placeItems: "center" }}>
+    <Box sx={{ width: "100%", 
+               height: "100vh", 
+               display: "grid",
+               gridTemplateColumns:"1fr 0.7fr",
+               }}>
+
+      <Box  sx={{display:"grid",placeItems:"center"}}>
+        <h1 className='paper'>welcome to CRM </h1>
+      </Box>
+      <Box sx={{display:"grid",placeItems:"center"}}>
       <Box sx={{ ...font, ...style }}>
+        
 
-
-        <h1>Welcome to CRM😀</h1>
+        <h1>Hiii😀</h1>
         <i style={{ color: "red", fontSize: "20px" }}>Please login to access your account!</i>
         <TextField
           className="TextField"
@@ -134,6 +144,7 @@ export function Login() {
           </Alert>
           : ""}
       </Box>
+    </Box>
     </Box>
   );
 }

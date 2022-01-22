@@ -109,16 +109,16 @@ export function Home() {
     <Box  sx={{padding:"1rem 1.5rem",
                }}>
        <Switch>
-         <Route exact path="/">
+         <Route exact path="/crm-app/">
            <DashBoard />
          </Route>
-         <Route exact path="/leads/">
+         <Route exact path="/crm-app/leads/">
             <Leads/>
          </Route>
-         <Route exact path="/services/">
+         <Route exact path="/crm-app/services/">
              <h1>this page is still under the construction</h1>
          </Route>
-         <Route exact path="/about/">
+         <Route exact path="/crm-app/about/">
              <h1>this page is still under the construction</h1>
          </Route>
         </Switch> 
