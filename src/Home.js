@@ -30,6 +30,8 @@ export function Home() {
   return (
     <>
     <Box>
+
+      {/* App header */}
        <Box sx={{
               width:"100%",
               height:"5rem",
@@ -47,6 +49,8 @@ export function Home() {
         SignOut
       </Button>
     </Box>
+
+    {/* Nav Bar  */}
     <Box  sx={{
                display:"grid",
                width:"100%",
@@ -66,6 +70,8 @@ export function Home() {
                alignItems:"center",
                background:"white"
               }}>
+
+      {/* nav buttons with svg */}
         <Box sx={{display:"grid",justifyItems:"center",cursor:"pointer"}}>
           <img src={DASHBOARD} alt="dashboard" style={{width:"200px",height:"80px"}}/>
           <Button sx={font}
