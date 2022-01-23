@@ -10,15 +10,17 @@ import Typography from '@mui/material/Typography';
 import { font } from "./font"
 import { Home } from './Home';
 import { ForgotPassword } from './ForgotPassword';
-import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeSwitch } from './ThemeSwitch';
 
 const context = createContext("");
 
 function App() {
 
+  const [mode,setMode] = useState(true);
   const darkTheme = createTheme({
     palette: {
-      mode: 'dark',
+      mode: (mode) ? "dark" : "light",
     },
   });
   
@@ -43,10 +45,11 @@ function header(key){
 
   return (
   <ThemeProvider theme={darkTheme}>
-    <context.Provider value={{keys,setKeys,header}}>
+    <context.Provider value={{keys,setKeys,header,mode,setMode}}>
     <div className="App">
       <Paper sx={{ borderRadius: "0", width: "100%", minHeight: "100vh" }}>
         <Typography variant="h5" sx={font}>
+          <ThemeSwitch />
           <Switch>
             <Route exact path="/">
               <Redirect to="/login" />

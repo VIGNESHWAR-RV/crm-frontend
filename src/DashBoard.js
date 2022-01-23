@@ -10,7 +10,7 @@ export function DashBoard() {
   const {keys,header} = useContext(context);
 
   const [leads, setLeads] = useState();
-  const details = () => fetch("https://crm-nodejs-rv.herokuapp.com/leads",
+  const details = () => fetch("https://crm-nodejs-rv.herokuapp.com/crm-app",
     {
       method: "GET",
       headers: header(keys)

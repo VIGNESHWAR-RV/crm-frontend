@@ -20,7 +20,7 @@ export function Home() {
 
   const [expand,setExpand] = useState(false);
   
-   const {keys} = useContext(context);
+   const {keys,mode} = useContext(context);
 
   //  console.log(sessionStorage.getItem(`${encrypt}1`));
  
@@ -55,7 +55,7 @@ export function Home() {
                display:"grid",
                width:"100%",
                marginTop:"0",
-               transition:"all 0.6s ease-in-out",
+               transition:"all 0.4s ease-in-out",
                position:"fixed",
                zIndex:"1",
               }}>
@@ -63,11 +63,11 @@ export function Home() {
           sx={{border:"3px solid dodgerBlue",
                height:"166px",
                marginTop:(expand)? "5rem": "-5.6rem",
-               transition:"all 0.6s ease-in-out",
+               transition:"all 0.4s ease-in-out",
                display:"flex",
                justifyContent:"space-around",
                alignItems:"center",
-               background:"#1b1b1b",
+               background:(mode)?"#1b1b1b" : "white",
               }}>
 
       {/* nav buttons with svg */}
@@ -114,7 +114,7 @@ export function Home() {
                  ...font
                  }}  variant='contained'
                  onClick={()=>setExpand(!expand)}>
-             {(expand) ?"⬇️":"⬆️"} Menu
+             {(expand) ?"⬆️":"⬇️"} Menu
           </Button>
        </Box>
     </Box>

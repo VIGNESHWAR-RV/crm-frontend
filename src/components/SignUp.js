@@ -27,18 +27,23 @@ export function SignUp() {
   const [noEmail,setNoEmail] = useState(false);
   const [userNameAvail , setUserNameAvail] = useState(false);
   const [userNameNotAvail , setUserNameNotAvail] = useState(false);
+  const [validateName,setValidateName] = useState(false);
   const [passwordFailed, setPasswordFailed] = useState(false);
   const [passwordMismatch , setPasswordMismatch] = useState(false);
 
   const [validEmail , setValidEmail] = useState(false);
+  const [validateEmail, setValidateEmail] = useState(false);
+  const [nonValidEmail , setNonValidEmail] = useState(false);
+  const [couldNotValidEmail , setCouldNotValidEmail] = useState(false);
+  const [validateOtp,setValidateOtp] = useState(false);
   const [otpError,setOtpError] = useState(false);
- 
+  const [otpSuccess,setOtpSuccess] = useState(false);
 
 
   const userNameCheck=()=>{
-    const check = 1;
-    const nameCheck = {name,check};
-    fetch("http://localhost:9000/Sign-Up",
+    const verifyName = name;
+    const nameCheck = {verifyName};
+    fetch("https://crm-nodejs-rv.herokuapp.com/Sign-Up",
     {method:"POST",body:JSON.stringify(nameCheck),
       headers:{"Content-Type":"application/json"}})
     .then((response)=>{
@@ -58,15 +63,42 @@ export function SignUp() {
 
   const emailValidator=()=>{
    //setValidEmail
-   //event.target.disabled
-    const emailID = {email};
-    fetch("http://localhost:9000/Sign-Up",
+    const verifyEmail = email;
+    const emailID = {verifyEmail};
+    fetch("https://crm-nodejs-rv.herokuapp.com/Sign-Up",
     {method:"POST",body:JSON.stringify(emailID),
       headers:{"Content-Type":"application/json"}})
+    .then((response)=>{
+      
+         if(response.status === 400){
+
+             async function check(){
+               let reply = await response.json()
+               console.log(reply);
+               if(reply.message === "email already exists"){
+                  return setNonValidEmail(true);
+                }
+                return setCouldNotValidEmail(true);
+             }
+
+             return check(response);
+         }
+
+         async function getOtp(response){
+          let reply = await response.json();
+          setOtpFromServer(reply.otp);
+          return setValidEmail(true);
+      }
+       
+      getOtp(response);
+    })
 
   }
   const otpValidator=()=>{
-
+    if( +otp === +otpFromServer){
+      return setOtpSuccess(true);
+    }
+    return setOtpError(true);
   }
 
   const signup=() => {
@@ -80,31 +112,38 @@ export function SignUp() {
     if(name==="" || name === undefined){
       return setNoName(true);
     }
+    if(!userNameAvail){
+       return setValidateName(true);
+    }
     if(email==="" || email === undefined || !(/^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i).test(email)){
       return setNoEmail(true);
     }
-    if( +otp !== +otpFromServer){
-      return setOtpError(true);
+    if(!validEmail){
+       return setValidateEmail(true);
     }
+    if(!otpSuccess || +otp !== +otpFromServer){
+      return setValidateOtp(true);
+   }
     const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})");
     if(password==="" || password === undefined ||  !strongRegex.test(password)){
       return setPasswordFailed(true);
     }
-    const userSignUp = {firstName,lastName,name,email,password,role:"user"};
     if(confirmPassword!==password){
       return setPasswordMismatch(true);
     }
    
- 
+    const userSignUp = {firstName,lastName,name,email,password,role:"user"};
+    
    fetch("https://crm-nodejs-rv.herokuapp.com/Sign-Up",
        {method:"POST",body:JSON.stringify(userSignUp),
          headers:{"Content-Type":"application/json"}})
    .then(response=>{
-         if(response.status===400){
-           return setUserNameNotAvail(true);
+         if(response.status === 400){
+          setUserNameNotAvail(true)
+           return console.log(response.json());
            }
 
-         else if(response.status===200){
+         else if(response.status === 200){
             history.push("/login");
          }
          
@@ -144,6 +183,7 @@ export function SignUp() {
         <TextField label="Last Name*" variant="standard" margin="normal" placeholder='Enter your last-name' 
          onChange={(e)=>setLastName(e.target.value)}
          onClick={()=>setNoLastName(false)}/>
+
         {(noLastName)
             ?<AlertComponent message={"please Enter last name"}
                               status={"error"}/>
@@ -155,11 +195,12 @@ export function SignUp() {
                    variant="standard" 
                    margin="normal" 
                    placeholder='Enter your desired user-name'
-                   onClick={()=>{setUserNameAvail(false);setUserNameNotAvail(false);setNoName(false)}}
-                   onChange={(e)=>{setName(e.target.value)}}
+                   onClick={()=>{setUserNameNotAvail(false);setNoName(false)}}
+                   onChange={(e)=>{setName(e.target.value);setUserNameAvail(false)}}
                    onKeyDown={(e)=>{if(e.key==="Enter"){userNameCheck()}}} />
         <Box>
-          <Button onClick={()=>userNameCheck()}>Validate User name</Button>
+          <Button onClick={()=>{userNameCheck();setValidateName(false)}}>Validate User name</Button>
+
           {(noName)
             ? <AlertComponent message={"please Enter valid user name"}
                               status={"error"}/>
@@ -172,43 +213,69 @@ export function SignUp() {
               ?<AlertComponent message={"User name not Available!.. Try another name"}
                                status={"error"} />
               :""}
+          {(validateName)
+               ?<AlertComponent message={"please validate the user name"}
+                          status={"error"} />
+               :""}
         </Box>
 
             {/* Mail validation */}
 
         <TextField label="Email*" variant="standard" margin="normal" type="email" placeholder='Enter your valid email'
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e)=>{setEmail(e.target.value);
+                            setOtpSuccess(false);
+                            setValidEmail(false);
+                            setNonValidEmail(false)}}
             onClick={()=>setNoEmail(false)}/>   
        {(noEmail)
-            ? <AlertComponent message={"please Enter a valid email"}
-                              status={"error"}/>
+            ? <AlertComponent message={"please Enter a valid email"} status={"error"}/>
             :""}
+       {(nonValidEmail)
+          ? <AlertComponent message={"Email is already associated with an account"} status={"error"} />
+          :""}
+       {(couldNotValidEmail)
+          ? <AlertComponent message={"couldn't verify email.Please try with any other email"} status={"error"} />
+          :""}
+       
         <Box>
-        <Button onClick={()=>emailValidator()}>Verify Email</Button>
+          <Button onClick={()=>{emailValidator();setValidateEmail(false)}}>Verify Email</Button>
         </Box>
 
+     
+         {(validateEmail)
+            ? <AlertComponent message={"please verify the email"} status={"error"} />
+            :""}
             {/* Otp Validation */}
      {(validEmail)      
-        ?<Box>
+        ?<Box sx={{fontSize:"1rem",color:"gold"}}>
+          Please Enter the One-Time-Password (OTP)<br/> that has been sent to your email..
+          <Box sx={{display:"flex"}}>
             <TextField label="OTP" variant="outlined" margin="normal" type="number" placeholder='Enter your otp'
              onClick={()=>setOtpError(false)}
-             onChange={(e)=>setOtp(e.target.value)}/>
+             onChange={(e)=>{setOtp(e.target.value);setOtpSuccess(false)}}/>
 
-             <Button onClick={()=>otpValidator()}
+             <Button onClick={()=>{otpValidator();setValidateOtp(false)}}
              >Verify OTP</Button>
+          </Box>
           {(otpError)
-             ? <Alert severity='error' sx={font}>
-                  Incorrect OTP
-               </Alert>
+             ? <AlertComponent message={"Invalid OTP"} status={"error"}/>
              : ""}
+          {(otpSuccess)
+             ? <AlertComponent message={"mail verified"} status={"success"}/>
+             :""}
+          {(validateOtp)
+               ? <AlertComponent message={"please verify OTP"} status={"error"}/>
+               :""}
          </Box>
       
         :""}
-
+      
+    
                {/* password enter section */}
         <TextField label="Password" type="password" margin="normal" variant="standard" placeholder='Enter your password'
          onChange={(e)=>setPassword(e.target.value)} onClick={()=>setPasswordFailed(false)}
-         helperText="password must contain atleast One from the following:- (1CAPITAL,1small,1Number,1special Characters)"/>
+         helperText="password must contain atleast 
+         (1 CAPITAL LETTER, 1 small letter, 1 Number, 1 special Character)"/>
 
         {(passwordFailed)
              ? <AlertComponent message={"password should be minimum 6 characters"}
@@ -225,6 +292,7 @@ export function SignUp() {
                                status={"error"} />
              :""}
         <br/>
+
         <Box sx={{display:"flex"}}>
            <Button sx={font} variant="contained"
              onClick={()=>signup()}>Sign up</Button>
@@ -242,14 +310,10 @@ export function SignUp() {
   );
 }
 
-function AlertComponent(message,status){
-
+function AlertComponent({message,status}){
 
 return(
-<Alert severity={status} sx={font}>
-      {message}
-</Alert>
-
-)
-
-}
+     <Alert severity={status} sx={font}>
+           {message}
+     </Alert>
+)};
