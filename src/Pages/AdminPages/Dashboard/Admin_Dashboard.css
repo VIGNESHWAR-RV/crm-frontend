@@ -1,0 +1,62 @@
+.textArea{
+        margin:1%;
+        padding:2%;
+        width:94%;
+        height:25rem;
+        font-size:1.4rem;
+        border:1px solid dodgerblue;
+        border-radius:1.5rem;
+        box-shadow: inset 0px 0px 0rem 100rem rgba(30, 144, 255, 0.066);
+        background:transparent;
+        caret-color: dodgerblue;
+        resize: vertical;
+}
+
+.textArea:focus{
+    outline:none;
+}
+/* Modern Browsers */
+textarea::placeholder {
+  /* font-size: 1.5rem; */
+  color: dodgerblue;
+}
+
+/* WebKit, Edge */
+textarea::-webkit-input-placeholder {
+  /* font-size: 1.5rem; */
+  color: dodgerblue;
+}
+
+/* Firefox 4-18 */
+textarea:-moz-placeholder {
+  /* font-size: 1.5rem; */
+  color: dodgerblue;
+}
+
+/* Firefox 19+ */
+textarea::-moz-placeholder {
+  /* font-size: 1.5rem; */
+  color: dodgerblue;
+}
+
+/* IE 10-11 */
+textarea:-ms-input-placeholder {
+  /* font-size: 1.5rem; */
+  color: dodgerblue;
+}
+
+/* Edge */
+textarea::-ms-input-placeholder {
+  /* font-size: 1.5rem; */
+  color: dodgerblue;
+}
+
+
+
+@media only screen and (max-width:1000px ) {
+
+  div .DashBoardOuterDiv{
+    grid-template-columns: 1fr;
+  }
+
+}

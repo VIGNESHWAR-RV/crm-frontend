@@ -1,0 +1,13 @@
+
+
+@media only screen and (max-width:1000px ){
+    #signupDiv{
+        grid-template-columns: 1fr;
+    }
+    #signupHeading{
+        font-size:2rem;
+    }
+    #signupForm{
+        grid-template-columns:1fr;
+    }
+}

@@ -1,86 +1,73 @@
-
-import './App.css';
-import * as React from 'react';
+import "./App.css";
+import { Toaster } from "react-hot-toast";
+import { createContext,useState,lazy,Suspense, useEffect } from 'react';
+import {Routes,Route} from "react-router-dom";
+import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import { createContext,useState } from 'react';
-import { Login } from './components/Login';
-import { SignUp } from './components/SignUp';
-import Typography from '@mui/material/Typography';
-import { font } from "./font"
-import { Home } from './Home';
-import { ForgotPassword } from './ForgotPassword';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { ThemeSwitch } from './ThemeSwitch';
+import { LoginPage } from "./Pages/LoginPage/LoginPage";
+import {SignUpPage} from "./Pages/SignUpPage/SignUpPage";
+import {ForgotPasswordPage} from "./Pages/ForgotPasswordPage/forgotPasswordPage";
 
-const context = createContext("");
 
-function App() {
+const LazyAdmin = lazy(() => import("./Pages/AdminPages/Admin_Routes"));
+const LazyTeamLead = lazy(() => import("./Pages/TeamLeadPages/TeamLead_Routes"));
+const LazyEmployee = lazy(() => import("./Pages/EmployeePages/Employee_Routes"));
+
+
+export const context = createContext("");
+
+export default function App(){
 
   const [mode,setMode] = useState(true);
+
   const darkTheme = createTheme({
     palette: {
       mode: (mode) ? "dark" : "light",
     },
   });
-  
 
-  const [keys,setKeys] = useState(sessionStorage.getItem("encryption"));
-
-  
-function header(key){
-   // const key = sessionStorage.getItem("encryption");
-    const role = sessionStorage.getItem(`${key}1`);
-    const token =sessionStorage.getItem(`${key}2`).split(`${key}`).join(".");
-    const header = (role==="admin") 
-                      ? {"admin-auth":`${token}`}
-                      : (role==="manager")
-                           ?{"manager-auth":`${token}`}
-                           :(role==="employee")
-                               ?{"employee-auth":`${token}`}
-                               :{"user-auth":`${token}`};
-  
-    return header;
-}
+  // console.count("rendering");
 
   return (
-  <ThemeProvider theme={darkTheme}>
-    <context.Provider value={{keys,setKeys,header,mode,setMode}}>
-    <div className="App">
-      <Paper sx={{ borderRadius: "0", width: "100%", minHeight: "100vh" }}>
-        <Typography variant="h5" sx={font}>
-          <ThemeSwitch />
-          <Switch>
-            <Route exact path="/">
-              <Redirect to="/login" />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/Sign-Up">
-              <SignUp />
-            </Route>
-            <Route path="/crm-app">
-            {(keys === null || keys === undefined || keys === "")
-               ? <Redirect to="/login"/>
-               :   <Home />
-            } 
-            </Route>
-            <Route exact path="/forgotPassword">
-              <ForgotPassword/>
-            </Route>
-            <Route path="**">
-              <h1>404</h1>
-            </Route>
-          </Switch>
-        </Typography>
-      </Paper>
-    </div>
-    </context.Provider>
-  </ThemeProvider>
-  );
+    <>
+    <ThemeProvider theme={darkTheme}>
+      <context.Provider value={{mode,setMode}}>
+       <Box>
+        <Paper elevation={0} sx={{backgroundColor:(mode)?"":"rgb(245,250,255)",borderRadius: "0", width: "100%",height:"100vh",overflow:"hidden" }}>
+         <Toaster/>
+          <Routes>
+            <Route path="/" element={<LandingPage/>}/>
+            <Route path="login" element={<LoginPage/>}/>
+            <Route path="getting-started" element={<SignUpPage/>}/>
+            <Route path="forgot-password" element={<ForgotPasswordPage/>}/>
+
+            <Route path="admin/*" element={<Suspense fallback={"loading..."}>
+                                              <LazyAdmin/>
+                                           </Suspense>}/>
+            <Route path="teamLead/*" element={<Suspense fallback={"loading..."}>
+                                                 <LazyTeamLead/>
+                                              </Suspense>}/>
+            <Route path="employee/*" element={<Suspense fallback={"loading..."}>
+                                                 <LazyEmployee/>
+                                              </Suspense>}/>
+
+            {/* <Route path="admin/*" element={<ADMIN_ROUTES/> }/>
+            <Route path="teamLead/*" element={<TEAMLEAD_ROUTES/>}/>
+            <Route path="employee/*" element={<EMPLOYEE_ROUTES/>}/> 
+               */}
+          </Routes>
+        </Paper>
+       </Box>
+      </context.Provider>
+    </ThemeProvider>
+    </>
+  )
 }
 
-export default App;
-export {context};
+function LandingPage(){
 
+  return(
+    <></>
+  )
+}

@@ -1,0 +1,9 @@
+
+@media only screen and (max-width:800px ) {
+    #loginDiv{
+        grid-template-columns: 1fr;
+    }
+    #loginHeading{
+        font-size:2rem;
+    }
+}
