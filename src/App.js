@@ -67,6 +67,10 @@ export default function App(){
 
 function LandingPage(){
 
+  const navigate = useNavigate();
+
+  navigate("/login");
+
   return(
     <></>
   )
