@@ -69,7 +69,9 @@ function LandingPage(){
 
   const navigate = useNavigate();
 
-  navigate("/login");
+  useEffect(()=>{
+    navigate("/login");
+  },[navigate]);
 
   return(
     <></>
