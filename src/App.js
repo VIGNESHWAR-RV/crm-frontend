@@ -1,7 +1,7 @@
 import "./App.css";
 import { Toaster } from "react-hot-toast";
 import { createContext,useState,lazy,Suspense, useEffect } from 'react';
-import {Routes,Route} from "react-router-dom";
+import {Routes,Route,useNavigate} from "react-router-dom";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
