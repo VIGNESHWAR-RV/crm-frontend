@@ -9,9 +9,9 @@ export function TEAMLEAD_CUSTOMERS_ROUTES(){
 
     return(
         <Routes>
-          <Route path="/" element={<TEAMLEAD_CUSTOMER_ADD_PAGE/>}/>
-          <Route path="add" element={<TEAMLEAD_CUSTOMER_INFO_PAGE/>}/>
-          <Route path="/:id" element={<TEAMLEAD_CUSTOMERS_TABLE_PAGE/>}/>
+          <Route path="/" element={<TEAMLEAD_CUSTOMERS_TABLE_PAGE/>}/>
+          <Route path="add" element={<TEAMLEAD_CUSTOMER_ADD_PAGE/>}/>
+          <Route path="/:id" element={<TEAMLEAD_CUSTOMER_INFO_PAGE/>}/>
         </Routes> 
     )
 }

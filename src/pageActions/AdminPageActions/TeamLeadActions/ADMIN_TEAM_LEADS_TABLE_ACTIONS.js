@@ -47,7 +47,6 @@ export function ADMIN_TEAM_LEADS_TABLE_ACTIONS({Props}){
      if(componentMounted.current){
         
          if(data !== "" && data !== null){ 
-             // teamLeadDispatch({eventType:ADMIN_TEAM_LEAD_ACTIONS.UPDATE,...data})
              setTableData(data);
           }
      }

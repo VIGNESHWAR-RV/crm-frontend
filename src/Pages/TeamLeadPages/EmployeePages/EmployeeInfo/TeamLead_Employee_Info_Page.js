@@ -156,7 +156,11 @@ const jobHeadingCard = {sx:{position:"sticky",top:"0rem",zIndex:"2"},
 
 const navPath = "/teamLead/customers/";
 
-const pendingCustomerCard={sx:{width:"100%",mb:1,border:"1px solid dodgerblue",borderRadius:"1rem"},className:"",};
+const pendingCustomerCard={sx:{width:"100%",mb:1,border:"1px solid dodgerblue",borderRadius:"1rem",cursor:"pointer"},className:"",};
+
+const jobStatusChip = {sx:{m:1,ml:"auto",fontSize:"1rem",fontStyle:"bold"},
+                          className:""
+                         };
 
 const customerNameAndStatusBox={sx:{display:"flex",alignItems:"center"},className:"",};
 
@@ -177,7 +181,7 @@ const jobDescriptionSekeleton={sx:{m:1,minWidth:"4rem",width:"96%",height:"1.5re
                       };
 
 
-const pendingJobProps = {jobOuterCard,jobHeadingCard,navPath,pendingCustomerCard,customerNameAndStatusBox,customerNameSkeleton,customerStatusSkeleton,jobDescriptionSekeleton};
+const pendingJobProps = {jobOuterCard,jobHeadingCard,navPath,pendingCustomerCard,jobStatusChip,customerNameAndStatusBox,customerNameSkeleton,customerStatusSkeleton,jobDescriptionSekeleton};
 
 
 //---------------------------------------------------------------------------------------

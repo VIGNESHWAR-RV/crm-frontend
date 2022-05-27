@@ -41,8 +41,18 @@
     grid-template-columns: 1fr;
   }
 } */
+#landingHeading{
+  font-size:3rem;
+  text-align: center;
+}
 @media only screen and (max-width:800px ) {
    .paper{
      font-size:1.75rem;
+   }
+   #landingDiv{
+      grid-template-columns: 1fr;
+   }
+   #landingHeading{
+      font-size:2rem;
    }
 }

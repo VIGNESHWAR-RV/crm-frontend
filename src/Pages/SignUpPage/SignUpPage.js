@@ -102,7 +102,7 @@ export function SignUpPage(){
        }
     }
 
-    const regex = {name:"^[a-zA-Z]{2,}$",
+    const regex = {name:"^[a-zA-Z0-9 ]{2,}$",
                    password:"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$",
                    userName:"^[a-zA-Z0-9@#]{4,16}$",
                    company:`^[a-zA-Z0-9.'",@ ()-_]{1,}$`,

@@ -94,12 +94,12 @@ export function ADMIN_CUSTOMER_DETAILS_PAGE_ACTIONS({Props={}}){
                      console.log(body);
  
                      await update({ path:"/admin/customers/update",method:"PUT",header:{},body,role:"admin" });
+
+                     setFetchData(prevState=>{return {...prevState,body:{},path:`/admin/customers/${customer_id}` }});
                      
                      return;
                  };
                  handleSubmit(states);
-                 setFetchData(prevState=>{return {...prevState,body:{},path:`/admin/customers/${customer_id}` }});
-
             }
 
             if(states.triggerUpdate === "delete"){
@@ -112,9 +112,12 @@ export function ADMIN_CUSTOMER_DETAILS_PAGE_ACTIONS({Props={}}){
   
                     await update({ path:"/admin/customers/delete",method:"DELETE",header:{},body,role:"admin" });
 
+                    navigate(-1);
+
+                    return;
+
               }
               deleteEmployee(states);
-              navigate(-1);
             }
 
         }

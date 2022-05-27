@@ -68,6 +68,17 @@ export function ADMIN_EMPLOYEE_PAGE_ACTIONS({Props}){
     // header  ---> optional
     // body  ---> optional
     // role ---> should define role for getting respective token
+ 
+    useEffect(()=>{
+        
+        if(componentMounted.current){
+           
+            if(data !== "" && data !== null){ 
+                dispatch({eventType:ADMIN_EMPLOYEE_ACTIONS.UPDATE,...data})
+             }
+        }
+
+    },[data]);
 
     useEffect(()=>{
 
@@ -83,11 +94,12 @@ export function ADMIN_EMPLOYEE_PAGE_ACTIONS({Props}){
                      const body = { updatedData,changedTeamMember };
  
                      await update({ path:"/admin/employees/update",method:"PUT",header:{},body,role:"admin" });
-                     
+
+                     setFetchData(prevState=>{return {...prevState,body:{} }});
+
                      return;
                  };
                  handleSubmit(states);
-                 setFetchData(prevState=>{return {...prevState,body:{} }});
 
             }
 
@@ -101,26 +113,17 @@ export function ADMIN_EMPLOYEE_PAGE_ACTIONS({Props}){
   
                     await update({ path:"/admin/employees/delete",method:"DELETE",header:{},body,role:"admin" });
 
+                    navigate(-1);
+
+                    return;
+
               }
               deleteEmployee(states);
-              navigate(-1);
             }
 
         }
         //eslint-disable-next-line
     },[componentMounted,states.triggerUpdate,setFetchData,navigate]);
-
-
-    useEffect(()=>{
-        
-        if(componentMounted.current){
-           
-            if(data !== "" && data !== null){ 
-                dispatch({eventType:ADMIN_EMPLOYEE_ACTIONS.UPDATE,...data})
-             }
-        }
-
-    },[data]);
 
        //for handling edit mode on and off events
     const handleEdit=useCallback(()=>{
@@ -257,7 +260,7 @@ export function ADMIN_EMPLOYEE_PAGE_ACTIONS({Props}){
                              <RevenueData states={states} revenueDetailProps={revenueDetailProps} /> 
                           </BoxComponent>
                            
-                           <PendingJobsContainer pendingJobProps={pendingJobProps} states={states} />
+                           <PendingJobsContainer pendingJobProps={pendingJobProps} pendingJobData={states.pendingJobData} />
                     </BoxComponent>
                     {/* ------------------------------------------------ */}
              

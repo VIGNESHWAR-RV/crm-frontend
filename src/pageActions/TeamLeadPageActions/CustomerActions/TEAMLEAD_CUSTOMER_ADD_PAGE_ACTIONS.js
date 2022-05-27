@@ -89,8 +89,7 @@ export function TEAMLEAD_CUSTOMER_ADD_PAGE_ACTIONS({Props={}}){
 
         }
         
-        //eslint-disable-next-line
-    },[data,dispatch,setTeamLeadOptions]);
+    },[data,dispatch,setTaskOwnerOptions]);
  
 
     const handleChange=useCallback((e)=>{

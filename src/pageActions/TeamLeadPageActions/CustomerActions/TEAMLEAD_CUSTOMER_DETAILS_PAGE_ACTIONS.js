@@ -82,27 +82,23 @@ export function TEAMLEAD_CUSTOMER_DETAILS_PAGE_ACTIONS({Props={}}){
 
     useEffect(()=>{
 
-        if(componentMounted.current){
+        if(componentMounted.current && states.triggerUpdate === "submit"){
 
-            if(states.triggerUpdate === "submit"){
-
-                 async function handleSubmit(states){
+            async function handleSubmit(states){
                      //update function to send the data
  
                      const { updatedCustomerData } = states;
  
                      const body = {...updatedCustomerData};
 
-                     console.log(body);
  
                      await update({ path:"/teamLead/customers/update",method:"PUT",header:{},body,role:"teamLead" });
+
+                     setFetchData(prevState=>{return {...prevState,body:{},path:`/teamLead/customers/${customer_id}` }});
                      
                      return;
-                 };
-                 handleSubmit(states);
-                 setFetchData(prevState=>{return {...prevState,body:{},path:`/teamLead/customers/${customer_id}` }});
-
-            }
+            };
+            handleSubmit(states);      
 
         }
 

@@ -26,7 +26,6 @@ export function TEAMLEAD_MY_PROFILE_PAGE_ACTIONS({Props={}}){
     
     const componentMounted = useRef(true);
 
-   
     useEffect(()=>{
 
         return()=>{
@@ -58,15 +57,16 @@ export function TEAMLEAD_MY_PROFILE_PAGE_ACTIONS({Props={}}){
              async function submit(data){
 
                 await update({path:"/teamLead/myProfile",method:"PUT",header:{},body:data,role:"teamLead"});
+                fetchData(prevFetchData=>{return {...prevFetchData,body:{}}});
                 return;
              }
              submit(states.updatedData);
-             fetchData(prevFetchData=>{return {...prevFetchData,body:{}}});
 
          }
 
          //eslint-disable-next-line
     },[componentMounted,fetchData,states.triggerUpdate])
+
 
     const handleEdit = useCallback(()=>{
 
@@ -75,7 +75,6 @@ export function TEAMLEAD_MY_PROFILE_PAGE_ACTIONS({Props={}}){
 
     },[dispatch]);
 
-
     const handleDialog = useCallback(()=>{
 
         dispatch({eventType:TEAMLEAD_MY_PROFILE_ACTIONS.DIALOG});
@@ -83,7 +82,6 @@ export function TEAMLEAD_MY_PROFILE_PAGE_ACTIONS({Props={}}){
 
     },[dispatch]);
 
-   
     const handleSubmit = useCallback((e)=>{
 
         e.preventDefault();
@@ -91,7 +89,6 @@ export function TEAMLEAD_MY_PROFILE_PAGE_ACTIONS({Props={}}){
         return;
 
     },[dispatch]);
-
 
     const handleConfirmSubmit = useCallback(()=>{
            
@@ -111,7 +108,6 @@ export function TEAMLEAD_MY_PROFILE_PAGE_ACTIONS({Props={}}){
 
     const headingHandlers = {handleEdit,handleSubmit};
 
-
     const handle_Personal_data_change = useCallback((e)=>{
 
          dispatch({eventType:TEAMLEAD_MY_PROFILE_ACTIONS.PERSONAL_DATA,name:e.target.name,value:e.target.value});
@@ -126,8 +122,7 @@ export function TEAMLEAD_MY_PROFILE_PAGE_ACTIONS({Props={}}){
 
     },[dispatch]);
 
-   
-     const {tableOuterBox={},headingOuterBox={},headingProps={},dialogProps={},personalAndTeamOuterBox={},personalDataProps={},signOutButton={}} = Props;
+    const {tableOuterBox={},headingOuterBox={},headingProps={},dialogProps={},personalAndTeamOuterBox={},personalDataProps={},signOutButton={}} = Props;
 
     return(
         <>

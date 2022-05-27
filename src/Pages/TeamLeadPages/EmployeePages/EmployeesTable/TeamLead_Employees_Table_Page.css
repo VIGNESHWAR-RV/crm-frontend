@@ -1,0 +1,14 @@
+
+
+th{
+    background-color:dodgerblue;
+    /* border-collapse: collapse; */
+  }
+  td{
+    text-align:center;
+  }
+  tr:hover{
+      background-color: rgba(129, 129, 129, 0.263);
+      cursor:pointer;
+  }
+  

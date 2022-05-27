@@ -118,7 +118,7 @@ function ADMIN_ROUTES(){
               ?
                  <Box sx={{overflow:"auto",backgroundColor:"rgba(30, 144, 255, 0.666)",minHeight:"93.5vh",maxHeight:"93.5vh"}}>
                    <Routes>
-                       {/* SCREAMING_SNAKE_CASE 😀 */}
+                       {/* SCREAMING_SNAKE_CASE 😀🐍 */}
                        <Route path="/" element={ <Navigate to="dashboard/" />} />  
                           {/* nav bar not detecting on navigating  from "/" to  "dashboard/" */}
                        <Route path="dashboard/*" element={<ADMIN_DASHBOARD/>}/>

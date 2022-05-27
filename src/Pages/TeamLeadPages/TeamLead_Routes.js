@@ -15,29 +15,28 @@ import { TEAMLEAD_MY_PROFILE_PAGE } from "./MyProfile/TeamLead_MyProfile";
         const navigate = useNavigate();
 
         const [isAuthorized,setIsAuthorized] = useState(false);
-        const componentMounted = useRef(true);
-        
+        const componentMounted = useRef(true);       
 
         const Buttons = [
-            {sx:{fontSize:"larger",px:2},
+            {sx:{fontSize:"larger",px:2,borderRadius:"1.5rem"},
             darkColor:"black",
             lightColor:"white",
             heading:"Dashboard",
             value:"dashboard/"},
     
-            {sx:{fontSize:"larger",px:2},
+            {sx:{fontSize:"larger",px:2,borderRadius:"1.5rem"},
             darkColor:"black",
             lightColor:"white",
             heading:"Employees",
             value:"employees/"},
     
-            {sx:{fontSize:"larger",px:2},
+            {sx:{fontSize:"larger",px:2,borderRadius:"1.5rem"},
             darkColor:"black",
             lightColor:"white",
             heading:"Customers",
             value:"customers/"},
     
-            {sx:{fontSize:"larger",px:2},
+            {sx:{fontSize:"larger",px:2,borderRadius:"1.5rem"},
             darkColor:"black",
             lightColor:"white",
             heading:"My Account",
@@ -45,7 +44,6 @@ import { TEAMLEAD_MY_PROFILE_PAGE } from "./MyProfile/TeamLead_MyProfile";
           ];
     
         const logo = [Logo,{height:"3rem",width:"3rem",borderRadius:"50%",margin:"auto 1%"}];
-        // const [Buttons,setButtons] = useState(defaultButtons);
         const ButtonsStyle = {display:"flex",flexDirection:"row",p:2};
         const navStyle = {backgroundColor:"dodgerblue",display:"flex",flexDirection:"row"};
 
@@ -103,24 +101,24 @@ import { TEAMLEAD_MY_PROFILE_PAGE } from "./MyProfile/TeamLead_MyProfile";
       
     return(
         <Box sx={{overflow: "hidden"}}>
-        <Box>
-          <NavBar navProps={navProps} isAuthorized={isAuthorized} />
+           <Box>
+             <NavBar navProps={navProps} isAuthorized={isAuthorized} />
+           </Box>
+           {(isAuthorized)
+                 ?
+                    <Box sx={{overflow:"auto",backgroundColor:"rgba(30, 144, 255, 0.666)",minHeight:"93.5vh",maxHeight:"93.5vh"}}>
+                      <Routes>
+                          {/* SCREAMING_SNAKE_CASE 😀🐍 */}
+                          <Route path="/" element={ <Navigate to="dashboard/" />} />
+                          <Route path="dashboard/*" element={ <TEAMLEAD_DASHBOARD_PAGE/> }/>
+                          <Route path="employees/*" element={ <TEAMLEAD_EMPLOYEES_ROUTES/> }/>
+                          <Route path="customers/*" element={ <TEAMLEAD_CUSTOMERS_ROUTES/> }/>
+                          <Route path="my-profile/*" element={ <TEAMLEAD_MY_PROFILE_PAGE/> }/>
+                          {/* nav back option for 404 page */}
+                      </Routes>
+                    </Box>
+                 :""}
         </Box>
-        {(isAuthorized)
-              ?
-                 <Box sx={{overflow:"auto",backgroundColor:"rgba(30, 144, 255, 0.666)",minHeight:"93.5vh",maxHeight:"93.5vh"}}>
-                   <Routes>
-                       {/* SCREAMING_SNAKE_CASE 😀 */}
-                       <Route path="/" element={ <Navigate to="dashboard/" />} />
-                       <Route path="dashboard/*" element={ <TEAMLEAD_DASHBOARD_PAGE/> }/>
-                       <Route path="employees/*" element={ <TEAMLEAD_EMPLOYEES_ROUTES/> }/>
-                       <Route path="customers/*" element={ <TEAMLEAD_CUSTOMERS_ROUTES/> }/>
-                       <Route path="my-profile/*" element={ <TEAMLEAD_MY_PROFILE_PAGE/> }/>
-                       {/* nav back option for 404 page */}
-                   </Routes>
-                 </Box>
-              :""}
-    </Box>
     )
 }
 

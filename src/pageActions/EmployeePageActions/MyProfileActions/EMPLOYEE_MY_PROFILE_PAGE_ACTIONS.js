@@ -58,11 +58,12 @@ export function EMPLOYEE_MY_PROFILE_PAGE_ACTIONS({Props={}}){
              async function submit(data){
 
                 await update({path:"/employee/myProfile",method:"PUT",header:{},body:data,role:"employee"});
+                
+                fetchData(prevFetchData=>{return {...prevFetchData,body:{}}});
+
                 return;
              }
              submit(states.updatedData);
-             fetchData(prevFetchData=>{return {...prevFetchData,body:{}}});
-
          }
 
          //eslint-disable-next-line

@@ -11,7 +11,7 @@ import { TEAMLEAD_NOTES_CONTAINER_INITIALSTATES,TEAMLEAD_NOTES_CONTAINER_ACTIONS
 
 
 
-export function TEAMLEAD_NOTES_CONTAINER_ACTION({notesProps={},notesData={}}){
+export function TEAMLEAD_NOTES_CONTAINER_ACTION({notesProps={},notesData=""}){
 
     const { notesUpdatePath="",...otherNotesProps } = notesProps;
 
@@ -30,11 +30,7 @@ export function TEAMLEAD_NOTES_CONTAINER_ACTION({notesProps={},notesData={}}){
     useEffect(()=>{
         
           if(componentMounted.current){
-
-               if( typeof(notesData) === "string"){
-                   dispatch({eventType:TEAMLEAD_NOTES_CONTAINER_ACTIONS.FIRST_TIME_SET,value:notesData});
-               }
-
+                dispatch({eventType:TEAMLEAD_NOTES_CONTAINER_ACTIONS.FIRST_TIME_SET,value:notesData});
           }
 
     },[componentMounted,notesData,dispatch]);

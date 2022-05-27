@@ -48,7 +48,7 @@ export const ADMIN_CUSTOMER_INFO_REDUCER=(states,{eventType,...payLoad})=>{
         //✅
         case ADMIN_CUSTOMER_INFO_ACTIONS.EDIT:{
              function handleEdit(states){
-                  return {...states,edit:!states.edit}
+                  return {...states,edit:!states.edit,isTaskCompleted:(states.customerData.status === "completed")?true:false}
              }
              return handleEdit(states);
         }

@@ -13,7 +13,7 @@ import { EMPLOYEE_NOTES_CONTAINER_INITIALSTATES,
          EMPLOYEE_NOTES_CONTAINER_REDUCER } from '../../../States_Actions_Reducers/Employee/Dashboard Notes/Employee_Notes';
 //-----------------------------------------------------------------------------------
 
-export function EMPLOYEE_NOTES_CONTAINER_PAGE_ACTIONS({notesProps={},notesData={}}){
+export function EMPLOYEE_NOTES_CONTAINER_PAGE_ACTIONS({notesProps={},notesData=null}){
 
     const { notesUpdatePath="",...otherNotesProps } = notesProps;
 
@@ -33,9 +33,7 @@ export function EMPLOYEE_NOTES_CONTAINER_PAGE_ACTIONS({notesProps={},notesData={
         
           if(componentMounted.current){
 
-               if( typeof(notesData) === "string"){
                    dispatch({eventType:EMPLOYEE_NOTES_CONTAINER_ACTIONS.FIRST_TIME_SET,value:notesData});
-               }
 
           }
 

@@ -25,8 +25,8 @@ export function ADMIN_TEAM_LEAD_ADD_PAGE(){
 //--- { input props } -------------------------------------------------
 
        //regex patterns
-    const regex = {firstName:"^[a-zA-Z.]{2,}$",
-                   lastName:"^[a-zA-Z.]{2,}$",
+    const regex = {firstName:"^[a-zA-Z. 0-9]{2,}$",
+                   lastName:"^[a-zA-Z. 0-9]{2,}$",
                    password:"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$",
                    userName:"^[A-Z0-9-]{9,9}$",
                    role:"^[a-z ]{5,}$",

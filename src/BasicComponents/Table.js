@@ -74,7 +74,7 @@ function RowGenerator({requiredHeadings=[],tableStatusChip={},data={},isLastInde
                        :(field === "revenue")
                            ? <h3 style={{fontWeight:"500"}}><i style={{color:"dodgerblue",fontSize:"1.5rem"}}>₹ </i>{data[field]}</h3>
                            :(field === "dueDate")
-                               ? <h3><ChipComponent props={{...tableStatusChip,label:giveDate(data[field]),color:dateColor(data[field])}} /></h3>
+                               ? <h3><ChipComponent props={{...tableStatusChip,label:giveDate(data[field]),color:(data.status === "completed")?"success":dateColor(data[field])}} /></h3>
                                : <h3 style={{fontWeight:"500"}}>{data[field]}</h3>}                   
             </td>)}
         </>

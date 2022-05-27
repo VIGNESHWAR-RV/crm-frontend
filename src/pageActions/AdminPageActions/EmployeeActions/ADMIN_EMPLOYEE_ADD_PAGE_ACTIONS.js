@@ -38,6 +38,7 @@ export function ADMIN_EMPLOYEE_ADD_PAGE_ACTIONS({Props}){
     const [teamLeadOptions,setTeamLeadOptions] = useState([]);
 
     const [data] = useFetchAction({componentMounted,path:"/admin/employees/add",method:"GET",header:{},body:{},role:"admin"});
+
     // ************* Notes for using -{ useFetchAction custom hook }-  ***************
     // componentMounted  ---> must be useRef
     // path  ---> end point of required API

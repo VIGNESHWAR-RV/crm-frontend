@@ -22,7 +22,7 @@ export function TEAMLEAD_CUSTOMERS_TABLE_PAGE(){
                         variant:"contained",
                         type:"submit",
                         contentComponent:<AddRoundedIcon/>,
-                        contentText:" Add Team Lead" }; 
+                        contentText:" Add Customer" }; 
 
     //----------------------------------------------------------------------------------
     

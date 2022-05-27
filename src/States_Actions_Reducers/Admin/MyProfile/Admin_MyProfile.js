@@ -40,7 +40,7 @@ export const ADMIN_MY_PROFILE_REDUCER = (states,{eventType,...payLoad})=>{
                        return {...states,updatedData:{...states.updatedData,firstName:payLoad.value}};
                    }
                    case "lastName" :{
-                       return {...states,updatedData:{...states.updatedData,firstName:payLoad.value}};
+                       return {...states,updatedData:{...states.updatedData,lastName:payLoad.value}};
                    }
                    case "email" :{
                         return {...states,updatedData:{...states.updatedData,email:payLoad.email}};

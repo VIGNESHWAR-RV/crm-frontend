@@ -25,8 +25,8 @@ export function EMPLOYEE_CUSTOMER_INFO_PAGE(){
            // --- Common Data ----------------------------------------------------------------------------
                                         
        //regex patterns
-       const regex = {firstName:"^[a-zA-Z.]{2,}$",
-       lastName:"^[a-zA-Z.]{2,}$",
+       const regex = {firstName:"^[a-zA-Z.0-9 ]{2,}$",
+       lastName:"^[a-zA-Z.0-9 ]{2,}$",
        phoneNumber:"^[0-9+]{13,}$",
        password:"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$",
        userName:"^[A-Z0-9-]{9,9}$",

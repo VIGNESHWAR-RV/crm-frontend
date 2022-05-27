@@ -53,7 +53,6 @@ export function EMPLOYEE_CUSTOMER_DETAILS_PAGE_ACTIONS({Props={}}){
 
     },[componentMounted,customer_id,navigate])
 
-
     const [states,dispatch] = useReducer(EMPLOYEE_CUSTOMER_INFO_REDUCER , EMPLOYEE_CUSTOMER_INFO_INITIALSTATES);
 
     const [data,setFetchData] = useFetchAction({componentMounted,path:`/employee/customers/${customer_id}`,method:"GET",header:{},body:{},role:"employee" });
@@ -96,19 +95,18 @@ export function EMPLOYEE_CUSTOMER_DETAILS_PAGE_ACTIONS({Props={}}){
                      console.log(body);
  
                      await update({ path:"/employee/customers/update",method:"PUT",header:{},body,role:"employee" });
+
+                     setFetchData(prevState=>{return {...prevState,body:{},path:`/employee/customers/${customer_id}` }});
                      
                      return;
                  };
                  handleSubmit(states);
-                 setFetchData(prevState=>{return {...prevState,body:{},path:`/employee/customers/${customer_id}` }});
-
             }
 
         }
 
         //eslint-disable-next-line
     },[componentMounted,states.triggerUpdate,setFetchData,navigate,customer_id]);
-
 
        //for handling edit mode on and off events
     const handleEdit=useCallback(()=>{
@@ -118,7 +116,6 @@ export function EMPLOYEE_CUSTOMER_DETAILS_PAGE_ACTIONS({Props={}}){
 
     },[dispatch]);
 
-
        // for handling dialog on and off events
     const handleDialog=useCallback(()=>{
 
@@ -126,7 +123,6 @@ export function EMPLOYEE_CUSTOMER_DETAILS_PAGE_ACTIONS({Props={}}){
         return;
 
     },[dispatch]);
-
 
      //for submitting edited details
     const handleSubmit=useCallback((e)=>{
@@ -136,7 +132,6 @@ export function EMPLOYEE_CUSTOMER_DETAILS_PAGE_ACTIONS({Props={}}){
         return;
 
     },[dispatch]);
-
     
     const handleConfirmSubmit=useCallback((e)=>{
 

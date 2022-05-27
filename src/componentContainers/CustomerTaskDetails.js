@@ -4,14 +4,13 @@ import { SkeletonComponent } from "../BasicComponents/SkeletonComponent";
 import { TextFieldComponent } from "../BasicComponents/TextFieldComponent";
 import { DateComponent } from "../BasicComponents/DateComponent";
 import { InputComponent } from '../BasicComponents/InputComponent';
-
 import { giveDate, optionsGenerator } from "../Util";
 
 export function CustomerTaskDetails({taskDetailProps={},states={},handleChange=""}){
 
     const {taskDetailFields=[],inputProps={},taskStatusOptions={},SkeletonName={},SkeletonValue={},dataField="customerData"} = taskDetailProps;  //statusChip={}
 
-    // console.log(states);
+    // console.log(states,taskDetailFields);
 
     return(
         <>
@@ -35,11 +34,11 @@ export function CustomerTaskDetails({taskDetailProps={},states={},handleChange="
                                                           :(type === "date")
                                                               ? <DateComponent inputProps={{...inputProps,name:field,type,pattern,disablePast,helperText,disabled:states.isDisabled,defaultValue:states?.[dataField]?.[field]??"",typing:handleChange}} />                                                          
                                                               : <h2 style={{width:"100%",overflow:"auto",fontWeight:"500",fontStyle:"italic"}} >{states[dataField][field]}</h2>
-                                                 :<h2 style={{width:"100%",overflow:"auto",fontWeight:"500",fontStyle:"italic"}} >{(type === "date")?giveDate(states[dataField][field]):states[dataField][field]}</h2>
+                                                 :<h2 style={{width:"100%",overflow:"auto",fontWeight:"500",fontStyle:"italic"}} >{(type === "date" || (heading === "Start Date" || heading === "Due Date"))?giveDate(states[dataField][field]):states[dataField][field]}</h2>
                                                    }
                                          </Box>
-                                       :(states.isTaskCompleted)
-                                           ?(heading === "Service Charge")
+                                       :(heading === "Service Charge")
+                                           ?(states.isTaskCompleted)
                                                 ?<Box key={index} sx={{display:"grid",gridTemplateColumns:"35% 10% 50%",height:(states.edit)?"12vh":"auto",my:2,mb:(type === "textArea" && states.edit)?10:2,alignItems:"center",justifyItems:"start"}}>
                                                     <h2 style={{fontWeight:"500",justifySelf:"center"}}> {heading} </h2>
                                                     <h4>-</h4>
@@ -47,16 +46,20 @@ export function CustomerTaskDetails({taskDetailProps={},states={},handleChange="
                                                          ?(type === "number")
                                                                ?<InputComponent inputProps={{...inputProps,name:field,type,pattern,helperText,disabled:states.isDisabled,defaultValue:states?.[dataField]?.[field]??"",typing:handleChange,options:(type==="select")?(field === "status")?taskStatusOptions:optionsGenerator(states[optionName],"userName",heading):[]}}/>
                                                                :""
-                                                         : <h2 style={{width:"100%",overflow:"auto",fontWeight:"500",fontStyle:"italic"}} >{states[dataField][field]}</h2>
+                                                         : <h2 style={{width:"100%",overflow:"auto",fontWeight:"500",fontStyle:"italic"}} ><b style={{color:"dodgerblue"}}> ₹ </b>{states[dataField][field]}</h2>
                                                       }
                                                  </Box>
-                                               :""
+                                                :""
                                            :(heading === "Completed On")
-                                               ? (states[dataField].status === "completed")
-                                                    ? <h2 style={{width:"100%",overflow:"auto",fontWeight:"500",fontStyle:"italic"}} >{states[dataField][field]}</h2>
-                                                    :""
-                                               :""}
-                                 </Box>
+                                                   ? (states[dataField].status === "completed" && states.isTaskCompleted)
+                                                        ?<Box key={index} sx={{display:"grid",gridTemplateColumns:"35% 10% 50%",height:(states.edit)?"12vh":"auto",my:2,mb:(type === "textArea" && states.edit)?10:2,alignItems:"center",justifyItems:"start"}}>
+                                                             <h2 style={{fontWeight:"500",justifySelf:"center"}}> {heading} </h2>
+                                                             <h4>-</h4>
+                                                             <h2 style={{width:"100%",overflow:"auto",fontWeight:"500",fontStyle:"italic"}} >{giveDate(states[dataField][field])}</h2>
+                                                          </Box>
+                                                        :""
+                                                    :""}
+                                    </Box>
                                 )}
             
                    </Box>

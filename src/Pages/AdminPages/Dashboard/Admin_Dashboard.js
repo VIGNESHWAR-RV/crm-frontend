@@ -151,7 +151,7 @@ export function ADMIN_DASHBOARD(){
 
                 const navPath="/admin/customers/";
 
-               const pendingCustomerCard={sx:{width:"100%",mb:1,border:"1px solid dodgerblue",borderRadius:"1rem"},
+               const pendingCustomerCard={sx:{width:"100%",mb:1,border:"1px solid dodgerblue",borderRadius:"1rem",cursor:"pointer"},
                                           className:""
                                          };
 

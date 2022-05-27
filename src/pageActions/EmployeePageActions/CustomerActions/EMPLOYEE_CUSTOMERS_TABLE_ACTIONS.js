@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 //----------- { Component } Imports -----------------------------
 import { Table } from "../../../BasicComponents/Table";
-import { ButtonComponent } from "../../../BasicComponents/ButtonComponent";
+// import { ButtonComponent } from "../../../BasicComponents/ButtonComponent";
 import { BoxComponent } from "../../../BasicComponents/BoxComponent";
 import { CardComponent } from "../../../BasicComponents/CardComponent";
 //---------------------------------------------------------------
@@ -59,7 +59,7 @@ export function EMPLOYEE_CUSTOMERS_TABLE_ACTIONS({Props}){
     },[navigate]);
  
  
-    const {addButton={},tableHeadingAndButtonBox={},tableHeading={},tableOuterCard={},tableProps={}} = Props;
+    const {tableHeadingAndButtonBox={},tableHeading={},tableOuterCard={},tableProps={}} = Props;
  
 
     return(
@@ -68,7 +68,7 @@ export function EMPLOYEE_CUSTOMERS_TABLE_ACTIONS({Props}){
             <BoxComponent props={{...tableHeadingAndButtonBox}}>
                
                <h1><i>{tableHeading}</i></h1>
-               <ButtonComponent props={{...addButton,onClick:()=>navigate("add") }} />
+               {/* <ButtonComponent props={{...addButton,onClick:()=>navigate("add") }} /> */}
     
             </BoxComponent>
     

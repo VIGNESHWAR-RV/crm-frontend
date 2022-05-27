@@ -9,7 +9,7 @@ import { NotesContainer } from '../../../componentContainers/NotesContainer';
 import { ADMIN_NOTES_CONTAINER_INITIALSTATES,ADMIN_NOTES_CONTAINER_ACTIONS,ADMIN_NOTES_CONTAINER_REDUCER } from '../../../States_Actions_Reducers/Admin/Dashboard Notes/Admin_Notes';
 //-----------------------------------------------------------------------------------
 
-export function ADMIN_NOTES_CONTAINER_ACTION({notesProps={},notesData={}}){
+export function ADMIN_NOTES_CONTAINER_ACTION({notesProps={},notesData=null}){
 
     const { notesUpdatePath="",...otherNotesProps } = notesProps;
 
@@ -26,13 +26,9 @@ export function ADMIN_NOTES_CONTAINER_ACTION({notesProps={},notesData={}}){
     },[componentMounted]);
 
     useEffect(()=>{
-        
+          
           if(componentMounted.current){
-
-               if( typeof(notesData) === "string"){
-                   dispatch({eventType:ADMIN_NOTES_CONTAINER_ACTIONS.FIRST_TIME_SET,value:notesData});
-               }
-
+                dispatch({eventType:ADMIN_NOTES_CONTAINER_ACTIONS.FIRST_TIME_SET,value:notesData});
           }
 
     },[componentMounted,notesData,dispatch]);
@@ -49,8 +45,8 @@ export function ADMIN_NOTES_CONTAINER_ACTION({notesProps={},notesData={}}){
                  updateNotes({path:notesUpdatePath,method:"POST",header:{},body:{notes:states.updatedNotes},role:"admin"})
              }
         }
-              //eslint-disable-next-line
-    },[componentMounted,notesUpdatePath,states.triggerUpdate]);
+            //eslint-disable-next-line
+    },[]);
 
 
     const handleSave=useCallback(()=>{
@@ -66,7 +62,7 @@ export function ADMIN_NOTES_CONTAINER_ACTION({notesProps={},notesData={}}){
     },[dispatch]);
     
 
-     const notesHandlers = {handleSave,handleClear,handleTextChange}
+    const notesHandlers = {handleSave,handleClear,handleTextChange}
 
     return (
         <NotesContainer notesProps={otherNotesProps} notesHandlers={notesHandlers} states={states} />

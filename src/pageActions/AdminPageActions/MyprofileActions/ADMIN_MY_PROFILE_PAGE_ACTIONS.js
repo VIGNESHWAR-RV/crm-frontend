@@ -57,16 +57,18 @@ export function ADMIN_MY_PROFILE_PAGE_ACTIONS({Props={}}){
              async function submit(data){
 
                 await update({path:"/admin/myProfile",method:"PUT",header:{},body:data,role:"admin"});
+                fetchData(prevFetchData=>{return {...prevFetchData,body:{}}});
                 return;
              }
              submit(states.updatedData);
-             fetchData(prevFetchData=>{return {...prevFetchData,body:{}}});
+             
 
          }
 
          //eslint-disable-next-line
     },[componentMounted,fetchData,states.triggerUpdate])
 
+    
     const handleEdit = useCallback(()=>{
 
         dispatch({eventType:ADMIN_MY_PROFILE_ACTIONS.EDIT});

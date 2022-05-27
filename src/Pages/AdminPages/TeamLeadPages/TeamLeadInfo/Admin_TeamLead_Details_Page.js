@@ -284,7 +284,11 @@ export function ADMIN_TEAM_LEAD_PAGE(){
 
     const navPath = "/admin/customers/";
 
-   const pendingCustomerCard={sx:{width:"100%",mb:1,border:"1px solid dodgerblue",borderRadius:"1rem"}};
+   const pendingCustomerCard={sx:{width:"100%",mb:1,border:"1px solid dodgerblue",borderRadius:"1rem",cursor:"pointer"}};
+
+   const jobStatusChip = {sx:{m:1,ml:"auto",fontSize:"1rem",fontStyle:"bold"},
+                          className:""
+                         };
 
    const customerNameAndStatusBox={sx:{display:"flex",alignItems:"center"}};
    
@@ -305,7 +309,7 @@ export function ADMIN_TEAM_LEAD_PAGE(){
                                  };
 
 
-const pendingJobProps = {jobOuterCard,jobHeadingCard,navPath,pendingCustomerCard,customerNameAndStatusBox,customerNameSkeleton,customerStatusSkeleton,jobDescriptionSekeleton};
+const pendingJobProps = {jobOuterCard,jobHeadingCard,jobStatusChip,navPath,pendingCustomerCard,customerNameAndStatusBox,customerNameSkeleton,customerStatusSkeleton,jobDescriptionSekeleton};
 
 
 //---------------------------------------------------------------------------------------

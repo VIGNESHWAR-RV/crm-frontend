@@ -86,7 +86,7 @@ export function TEAMLEAD_DASHBOARD_PAGE(){
                                       loader:<CircularProgress size={25} />,
                                       contentText:" Save"};
           
-              const notesUpdatePath = "/admin/dashboard/notes";
+              const notesUpdatePath = "/teamLead/dashboard/notes";
           
               const notesClearButton = {sx:{m:1,fontSize:"90%",backgroundColor:"dodgerBlue"},
                                         className:"",
@@ -152,7 +152,7 @@ export function TEAMLEAD_DASHBOARD_PAGE(){
 
                const navPath = "/teamLead/customers/";
 
-               const pendingCustomerCard={sx:{width:"100%",mb:1,border:"1px solid dodgerblue",borderRadius:"1rem"},
+               const pendingCustomerCard={sx:{width:"100%",mb:1,border:"1px solid dodgerblue",borderRadius:"1rem",cursor:"pointer"},
                                           className:""
                                          };
 

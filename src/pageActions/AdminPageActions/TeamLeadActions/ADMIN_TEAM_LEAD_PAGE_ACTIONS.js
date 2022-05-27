@@ -97,15 +97,14 @@ export function ADMIN_TEAM_LEAD_PAGE_ACTIONS({Props}){
            
                            const body = { updatedData,updatedTeamMembers,removedTeamMembersWithJobs,removedTeamMembersWithoutJobs,changedTeamLead,changedTeamMember };
            
-                        //    console.log(body);
-           
                            await update({ path:"/admin/teamLeads/update",method:"PUT",header:{},body,role:"admin" });
                            // path="/",method="POST",header={},body={},role=""
-                           // console.log(states);
+                           setFetchData(prevData => {return {...prevData,body:{}}});
+
                            return;
                        };
                        handleSubmit(states);   
-                       setFetchData(prevData => {return {...prevData,body:{}}});
+                      
                 }
                 else if(states.triggerUpdate === "delete"){
                      
@@ -115,13 +114,13 @@ export function ADMIN_TEAM_LEAD_PAGE_ACTIONS({Props}){
          
                        const body = { userName:states.userData.userName,changedTeamLead };
 
-                    //    console.log(body);
-         
                        await update({ path:"/admin/teamLeads/delete",method:"DELETE",header:{},body,role:"admin" });
-         
+                       
+                       navigate(-1);
+
+                       return;
                     }
                     handleDelete(states);
-                    navigate(-1);
                 }
 
        }
@@ -281,7 +280,7 @@ export function ADMIN_TEAM_LEAD_PAGE_ACTIONS({Props}){
                              <RevenueData states={states} revenueDetailProps={revenueDetailProps} /> 
                           </Box>
                            
-                          <PendingJobsContainer pendingJobProps={pendingJobProps} states={states} />
+                          <PendingJobsContainer pendingJobProps={pendingJobProps} pendingJobData={states.pendingJobData} />
                     </BoxComponent>
                     {/* ------------------------------------------------ */}
              
